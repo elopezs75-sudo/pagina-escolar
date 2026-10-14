@@ -4,7 +4,7 @@ class Home extends BaseController
 {
     public function index()
     {
-        echo view ("Home/index.php");
+        echo view("Home/index");
     }
 
 
