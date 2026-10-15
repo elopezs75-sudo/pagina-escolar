@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title><?= $this->renderSection('title') ?></title>
 </head>
 <body>
 
