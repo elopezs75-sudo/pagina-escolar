@@ -4,7 +4,7 @@ class TareaModel extends \CodeIgniter\Model
 {
     protected $table = 'tareas';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['descripcion', 'estado'];
+    protected $allowedFields = ['usuario_id', 'titulo', 'descripcion', 'fecha_entrega', 'estado'];
     protected $useTimestamps = true;
-
+   
 }

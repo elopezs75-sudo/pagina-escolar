@@ -22,6 +22,24 @@ class Tareas extends BaseController
     }
     public function new()
     {
-        return view("Tareas/new");
+        return view('Tareas/new');
+    }
+
+    public function create()
+    {
+
+     $model = new \App\Models\TareaModel;
+
+     $model ->insert([
+        'usuario_id' => 12,
+        'titulo' => $this->request->getPost('titulo'),
+        'descripcion' => $this->request->getPost('descripcion'),
+        'estado' => $this->request->getPost('estado'),
+        'fecha_entrega' => $this->request->getPost('fecha_entrega')
+     ]);
+    
+     dd($model->insertID);
+     
     }
 }
+
