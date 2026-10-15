@@ -30,15 +30,25 @@ class Tareas extends BaseController
 
      $model = new \App\Models\TareaModel;
 
-     $model ->insert([
+     $result = $model->insert([
         'usuario_id' => 12,
         'titulo' => $this->request->getPost('titulo'),
         'descripcion' => $this->request->getPost('descripcion'),
         'estado' => $this->request->getPost('estado'),
         'fecha_entrega' => $this->request->getPost('fecha_entrega')
      ]);
+
+      if ($result === false) {
+      
+
+      return redirect()->back()
+      ->with('errors', $model->errors());
+
+        } else {
     
-     dd($model->insertID);
+     return redirect()->to("/tareas/show/$result");
+   
+        }
      
     }
 }
