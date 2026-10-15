@@ -34,6 +34,8 @@ $routes->get('/', 'Home::index');
 $routes->get('tareas', 'Tareas::index');
 $routes->get('migrate', 'Migrations::index');
 $routes->get('tareas/show/(:num)', 'Tareas::show/$1');
+$routes->get('tareas/new', 'Tareas::new');
+$routes->post('tareas/create', 'Tareas::create');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

@@ -17,11 +17,17 @@ use Psr\Log\LoggerInterface;
  * ```
  *     class Home extends BaseController
  * ```
- *
+
  * For security, be sure to declare any new methods as protected or private.
  */
 abstract class BaseController extends Controller
 {
+/*
+*
+* @var list<string>
+*
+*/
+    protected $helpers = ['form'];
     /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.

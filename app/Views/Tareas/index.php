@@ -8,14 +8,17 @@
 
 <h1>Tareas</h1>
 
+<a href="<?= site_url("/tareas/new") ?>">Nueva Tarea</a>
+
 <ul>
     <?php foreach($tareas as $tarea): ?>
 
     <li>
-    <?= $tarea['id'] ?> 
+    <a href="<?= site_url("tareas/show/{$tarea['id']}") ?>">
     <?= $tarea['descripcion'] ?>
     <?= $tarea['estado'] ?>
-    
+    <a>
+
     </li>
 
     <?php endforeach; ?>

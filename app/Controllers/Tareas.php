@@ -20,4 +20,8 @@ class Tareas extends BaseController
 
         return view("Tareas/show", ['tarea' => $tarea]);
     }
+    public function new()
+    {
+        return view("Tareas/new");
+    }
 }
