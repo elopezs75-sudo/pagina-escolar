@@ -49,9 +49,17 @@ class Tareas extends BaseController
     
      return redirect()->to("/tareas/show/$result")
      ->with('message', 'Tarea creada con éxito');
-   
+
         }
-     
+           }
+     public function edit($id)
+    {
+        $model = new \App\Models\TareaModel;
+        $tarea = $model->find($id);
+
+        return view("Tareas/edit", [
+            'tarea' => $tarea
+]);
     }
 }
 

@@ -15,10 +15,10 @@
 
     <li>
     <a href="<?= site_url("tareas/show/{$tarea['id']}") ?>">
-    <?= $tarea['descripcion'] ?>
-    <?= $tarea['estado'] ?>
-    <a>
-
+    <?= esc($tarea['titulo']) ?>
+    <?= esc($tarea['descripcion']) ?>
+    <?= esc($tarea['estado']) ?>
+    </a>
     </li>
 
     <?php endforeach; ?>

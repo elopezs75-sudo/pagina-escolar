@@ -14,16 +14,18 @@
     <dd><?= $tarea['id'] ?></dd>
 
     <dt>Título</dt>
-    <dd><?= $tarea['titulo'] ?></dd>
+    <dd><?= esc($tarea['titulo']) ?></dd>
 
     <dt>Descripción</dt>
-    <dd><?= $tarea['descripcion'] ?></dd>
+    <dd><?= esc($tarea['descripcion']) ?></dd>
 
     <dt>Fecha de entrega</dt>
-    <dd><?= $tarea['fecha_entrega'] ?></dd>
+    <dd><?= esc($tarea['fecha_entrega']) ?></dd>
 
     <dt>Estado</dt>
-    <dd><?= $tarea['estado'] ?></dd>
+    <dd><?= esc($tarea['estado']) ?></dd>
 </dl>
+
+<a href="<?= site_url("/tareas/edit/{$tarea['id']}") ?>">editar</a>
 
 <?= $this->endSection() ?>
