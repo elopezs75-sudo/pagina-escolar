@@ -59,7 +59,23 @@ class Tareas extends BaseController
 
         return view("Tareas/edit", [
             'tarea' => $tarea
+      ]);
+    }
+
+    public function update($id)
+    {
+    $model = new \App\Models\TareaModel();
+    $model->update($id, [
+    'titulo'        => $this->request->getPost('titulo'),
+    'descripcion'   => $this->request->getPost('descripcion'),
+    'estado'        => $this->request->getPost('estado'),
+    'fecha_entrega' => $this->request->getPost('fecha_entrega'),
 ]);
+
+        return redirect()->to("/tareas/show/$id")
+        ->with(`info`, 'Tarea actualizada con éxito');
+        
+
     }
 }
 
