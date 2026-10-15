@@ -6,8 +6,10 @@
 
 <h1>Tarea</h1>
 
+<a href="<?= site_url('tareas') ?>">&laquo; Volver a la lista</a>
 
 <dl>
+    
     <dt>ID</dt>
     <dd><?= $tarea['id'] ?></dd>
 

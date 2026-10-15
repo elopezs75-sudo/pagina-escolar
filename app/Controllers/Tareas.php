@@ -42,11 +42,13 @@ class Tareas extends BaseController
       
 
       return redirect()->back()
-      ->with('errors', $model->errors());
+      ->with('errors', $model->errors())
+      ->with('warning', 'Datos invalidos');
 
         } else {
     
-     return redirect()->to("/tareas/show/$result");
+     return redirect()->to("/tareas/show/$result")
+     ->with('message', 'Tarea creada con éxito');
    
         }
      
