@@ -1,39 +1,34 @@
 <?= $this->extend('Layouts/default') ?>
 
-<?= $this->section('title') ?>Usuario<?= $this->endSection() ?>
+<?= $this->section('title') ?>Usuarios<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
-<h1>Usuario</h1>
+<h1>Usuarios</h1>
 
 <?= $this->include('errores') ?>
 
-<a href="<?= site_url('usuarios') ?>">&lt;&lt; Volver al listado</a>
+<p><a href="<?= site_url('usuarios/nuevo') ?>">Nuevo usuario</a></p>
 
-<dl>
-    <dt>Nombre</dt>
-    <dd><?= esc($usuario['nombre']) ?></dd>
+<table border="1" cellpadding="6">
+    <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Activo</th>
+        <th>Administrador</th>
+        <th>Creado</th>
+    </tr>
+    <?php foreach ($usuarios as $u): ?>
+        <tr>
+            <td><a href="<?= site_url('usuarios/' . $u['id']) ?>"><?= esc($u['nombre']) ?></a></td>
+            <td><?= esc($u['correo']) ?></td>
+            <td><?= $u['activo'] ? 'Sí' : 'No' ?></td>
+            <td><?= $u['rol'] === 'administrador' ? 'Sí' : 'No' ?></td>
+            <td><?= esc($u['created_at']) ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
 
-    <dt>Correo</dt>
-    <dd><?= esc($usuario['correo']) ?></dd>
-
-    <dt>Activo</dt>
-    <dd><?= $usuario['activo'] ? 'Sí' : 'No' ?></dd>
-
-    <dt>Administrador</dt>
-    <dd><?= $usuario['rol'] === 'administrador' ? 'Sí' : 'No' ?></dd>
-
-    <dt>Creado</dt>
-    <dd><?= esc($usuario['created_at']) ?></dd>
-
-    <dt>Actualizado</dt>
-    <dd><?= esc($usuario['updated_at']) ?></dd>
-</dl>
-
-<a href="<?= site_url('usuarios/' . $usuario['id'] . '/editar') ?>">Editar</a>
-
-<?= form_open('/usuarios/' . $usuario['id'] . '/eliminar', ['onsubmit' => "return confirm('¿Seguro que quieres eliminar este usuario?')"]) ?>
-    <button>Eliminar</button>
-<?= form_close() ?>
+<?= $pager->simpleLinks('default', 'default_simple') ?>
 
 <?= $this->endSection() ?>
