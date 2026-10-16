@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Entities\Tarea;
+
 class Tareas extends BaseController
 {
     public function index()
@@ -16,13 +18,21 @@ class Tareas extends BaseController
     public function show($id)
     {
         $model = new \App\Models\TareaModel();
+
         $tarea = $model->find($id);
 
         return view("Tareas/show", ['tarea' => $tarea]);
     }
     public function new()
     {
-        return view('Tareas/new');
+        return view('Tareas/new', 
+        [
+        'tarea' => [
+            'titulo' => '',
+            'descripcion' => '',
+            'fecha_entrega' => '',
+            'estado' => '']
+        ]);
     }
 
     public function create()
@@ -30,26 +40,23 @@ class Tareas extends BaseController
 
      $model = new \App\Models\TareaModel;
 
-     $result = $model->insert([
-        'usuario_id' => 12,
-        'titulo' => $this->request->getPost('titulo'),
-        'descripcion' => $this->request->getPost('descripcion'),
-        'estado' => $this->request->getPost('estado'),
-        'fecha_entrega' => $this->request->getPost('fecha_entrega')
-     ]);
+     $tarea = new Tarea($this->request->getPost());
 
-      if ($result === false) {
-      
+     if ($model->insert($tarea)) {
+
+
+          return redirect()->to("/tareas/show/{$model->insertID}")
+     ->with('message', 'Tarea creada con éxito');
+    
+
+        } else {
+
 
       return redirect()->back()
       ->with('errors', $model->errors())
       ->with('warning', 'Datos invalidos')
       ->withInput();
 
-        } else {
-    
-     return redirect()->to("/tareas/show/$result")
-     ->with('message', 'Tarea creada con éxito');
 
         }
            }
