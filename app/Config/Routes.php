@@ -38,6 +38,19 @@ $routes->get('tareas/new', 'Tareas::new');
 $routes->post('tareas/create', 'Tareas::create');
 $routes->get('tareas/edit/(:num)', 'Tareas::edit/$1');
 $routes->post('tareas/update/(:num)', 'Tareas::update/$1');
+
+$routes->get('registro', 'Usuarios::registro');
+$routes->post('registro', 'Usuarios::guardar');
+
+$routes->get('login', 'Sesion::login');
+$routes->post('login', 'Sesion::entrar');
+$routes->get('logout', 'Sesion::salir');
+
+$routes->get('perfil', 'Perfil::index');
+$routes->get('perfil/editar', 'Perfil::editar');
+$routes->post('perfil/actualizar', 'Perfil::actualizar');
+$routes->get('perfil/password', 'Perfil::password');
+$routes->post('perfil/password', 'Perfil::cambiarPassword');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

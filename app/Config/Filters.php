@@ -34,6 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => \App\Filters\Autenticado::class,
     ];
 
     /**
@@ -80,6 +81,10 @@ class Filters extends BaseFilters
             // 'honeypot',
             // 'secureheaders',
         ],
+
+        'before' => [
+        'auth' => ['except' => ['/', 'home', 'login', 'registro', 'logout']],
+        ],
     ];
 
     /**
@@ -108,3 +113,4 @@ class Filters extends BaseFilters
      */
     public array $filters = [];
 }
+

@@ -19,6 +19,20 @@
 
     <?php endif; ?>
 
+    <nav>
+    <a href="<?= site_url('/') ?>">Inicio</a>
+
+    <?php if (session('usuario_id')): ?>
+        Hola, <?= esc(session('nombre')) ?>
+        <a href="<?= site_url('perfil') ?>">Perfil</a>
+        <a href="<?= site_url('tareas') ?>">Tareas</a>
+        <a href="<?= site_url('logout') ?>">Cerrar sesión</a>
+    <?php else: ?>
+        <a href="<?= site_url('registro') ?>">Registrarse</a>
+        <a href="<?= site_url('login') ?>">Iniciar sesión</a>
+    <?php endif; ?>
+   </nav>
+
     <?= $this->renderSection('content') ?>
  
 </body>
