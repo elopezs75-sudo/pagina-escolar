@@ -43,7 +43,8 @@ class Tareas extends BaseController
 
       return redirect()->back()
       ->with('errors', $model->errors())
-      ->with('warning', 'Datos invalidos');
+      ->with('warning', 'Datos invalidos')
+      ->withInput();
 
         } else {
     
@@ -65,16 +66,25 @@ class Tareas extends BaseController
     public function update($id)
     {
     $model = new \App\Models\TareaModel();
-    $model->update($id, [
+    $result = $model->update($id, [
     'titulo'        => $this->request->getPost('titulo'),
     'descripcion'   => $this->request->getPost('descripcion'),
     'estado'        => $this->request->getPost('estado'),
     'fecha_entrega' => $this->request->getPost('fecha_entrega'),
 ]);
 
+   if ($result){
+
         return redirect()->to("/tareas/show/$id")
-        ->with(`info`, 'Tarea actualizada con éxito');
+        ->with('message', 'Tarea actualizada con éxito');
+
         
+         }else {
+            return redirect()->back()
+                ->with('errors', $model->errors())
+                ->with('warning', 'Error al actualizar la tarea')
+                ->withInput();
+        }
 
     }
 }

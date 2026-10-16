@@ -23,17 +23,18 @@
 
     <div>
         <label for="titulo">Título</label>
-        <input type="text" name="titulo" id="titulo" value="<?= esc($tarea['titulo']) ?>">
+        <input type="text" name="titulo" id="titulo"
+         value="<?= old('titulo', $tarea['titulo']) ?>">
     </div>
 
     <div>
         <label for="descripcion">Descripción</label>
-        <textarea name="descripcion" id="descripcion"><?= esc($tarea['descripcion']) ?></textarea>
+        <textarea name="descripcion" id="descripcion"><?= old('descripcion', $tarea['descripcion']) ?></textarea>
     </div>
 
     <div>
         <label for="fecha_entrega">Fecha de Entrega</label>
-        <input type="date" name="fecha_entrega" id="fecha_entrega" value="<?= esc($tarea['fecha_entrega']) ?>">
+        <input type="date" name="fecha_entrega" id="fecha_entrega" value="<?= old('fecha_entrega', $tarea['fecha_entrega']) ?>">
     </div>
 
     <div>       
