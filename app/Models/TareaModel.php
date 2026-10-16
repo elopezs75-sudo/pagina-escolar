@@ -7,13 +7,18 @@ class TareaModel extends \CodeIgniter\Model
     protected $allowedFields = ['usuario_id', 'titulo', 'descripcion', 'fecha_entrega', 'estado'];
     protected $useTimestamps = true;
     protected $validationRules = [
-        'titulo' => 'required',
-        'descripcion' => 'required',
+        'usuario_id'    => 'required|is_natural_no_zero',
+        'titulo'        => 'required',
+        'descripcion'   => 'required',
         'fecha_entrega' => 'required|valid_date',
-        'estado' => 'required|in_list[pendiente,completada]'
+        'estado'        => 'required|in_list[pendiente,completada]'
     ];
 
     protected $validationMessages = [
+        'usuario_id' => [
+            'required' => 'Debes elegir un estudiante.',
+            'is_natural_no_zero' => 'Debes elegir un estudiante.'
+        ],
         'titulo' => [
             'required' => 'El título es obligatorio.'
         ],
@@ -24,6 +29,5 @@ class TareaModel extends \CodeIgniter\Model
             'required' => 'La fecha de entrega es obligatoria.',
             'valid_date' => 'La fecha de entrega debe ser una fecha válida.'
         ]
- 
     ];
 }

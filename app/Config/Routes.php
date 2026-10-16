@@ -51,6 +51,26 @@ $routes->get('perfil/editar', 'Perfil::editar');
 $routes->post('perfil/actualizar', 'Perfil::actualizar');
 $routes->get('perfil/password', 'Perfil::password');
 $routes->post('perfil/password', 'Perfil::cambiarPassword');
+
+$routes->group('usuarios', ['filter' => 'admin'], function ($routes) {
+    $routes->get('', 'UsuariosAdmin::index');
+    $routes->get('nuevo', 'UsuariosAdmin::nuevo');
+    $routes->post('nuevo', 'UsuariosAdmin::crear');
+    $routes->get('(:num)', 'UsuariosAdmin::ver/$1');
+    $routes->get('(:num)/editar', 'UsuariosAdmin::editar/$1');
+    $routes->post('(:num)/editar', 'UsuariosAdmin::actualizar/$1');
+    $routes->post('(:num)/eliminar', 'UsuariosAdmin::eliminar/$1');
+});
+
+$routes->group('usuarios', ['filter' => 'admin'], function ($routes) {
+    $routes->get('', 'UsuariosAdmin::index');
+    $routes->get('nuevo', 'UsuariosAdmin::nuevo');
+    $routes->post('nuevo', 'UsuariosAdmin::crear');
+    $routes->get('(:num)', 'UsuariosAdmin::ver/$1');
+    $routes->get('(:num)/editar', 'UsuariosAdmin::editar/$1');
+    $routes->post('(:num)/editar', 'UsuariosAdmin::actualizar/$1');
+    $routes->post('(:num)/eliminar', 'UsuariosAdmin::eliminar/$1');
+});
 /**
  * --------------------------------------------------------------------
  * Additional Routing
@@ -68,3 +88,26 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
 {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

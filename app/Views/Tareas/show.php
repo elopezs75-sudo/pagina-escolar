@@ -9,7 +9,6 @@
 <a href="<?= site_url('tareas') ?>">&laquo; Volver a la lista</a>
 
 <dl>
-    
     <dt>ID</dt>
     <dd><?= $tarea['id'] ?></dd>
 
@@ -26,6 +25,8 @@
     <dd><?= esc($tarea['estado']) ?></dd>
 </dl>
 
-<a href="<?= site_url("/tareas/edit/{$tarea['id']}") ?>">editar</a>
+<?php if (session('rol') === 'administrador'): ?>
+    <a href="<?= site_url("/tareas/edit/{$tarea['id']}") ?>">Editar</a>
+<?php endif; ?>
 
 <?= $this->endSection() ?>

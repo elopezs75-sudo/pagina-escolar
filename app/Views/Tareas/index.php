@@ -1,28 +1,31 @@
-<?=$this->extend('Layouts/default')?>
+<?= $this->extend('Layouts/default') ?>
 
-<?= $this->section("title") ?>
-    tareas
-<?= $this->endSection() ?>
+<?= $this->section('title') ?>Tareas<?= $this->endSection() ?>
 
-<?= $this->section("content") ?>
+<?= $this->section('content') ?>
 
 <h1>Tareas</h1>
 
-<a href="<?= site_url("/tareas/new") ?>">Nueva Tarea</a>
+<?= $this->include('errores') ?>
 
-<ul>
-    <?php foreach($tareas as $tarea): ?>
+<?php if (session('rol') === 'administrador'): ?>
+    <a href="<?= site_url('tareas/new') ?>">Nueva tarea</a>
+<?php endif; ?>
 
-    <li>
-    <a href="<?= site_url("tareas/show/{$tarea['id']}") ?>">
-    <?= esc($tarea['titulo']) ?>
-    <?= esc($tarea['descripcion']) ?>
-    <?= esc($tarea['estado']) ?>
-    </a>
-    </li>
-
-    <?php endforeach; ?>
+<?php if (empty($tareas)): ?>
+    <p>No hay tareas para mostrar.</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($tareas as $tarea): ?>
+            <li>
+                <a href="<?= site_url("tareas/show/{$tarea['id']}") ?>">
+                    <?= esc($tarea['titulo']) ?> -
+                    <?= esc($tarea['descripcion']) ?> -
+                    <?= esc($tarea['estado']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
     </ul>
+<?php endif; ?>
 
 <?= $this->endSection() ?>
-
