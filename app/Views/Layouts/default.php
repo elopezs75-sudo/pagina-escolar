@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?= $this->renderSection('title') ?></title>
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
 </head>
 <body>
     <?php if (session()->has('warning')): ?>
@@ -31,6 +32,7 @@
         <a href="<?= site_url('registro') ?>">Registrarse</a>
         <a href="<?= site_url('login') ?>">Iniciar sesión</a>
     <?php endif; ?>
+    
 
 
 
@@ -43,7 +45,9 @@
 
    
 
-    <?= $this->renderSection('content') ?>
+    <div class="contenedor">
+    <?= $this->renderSection("content") ?>
+</div>
  
 </body>
 </html>
