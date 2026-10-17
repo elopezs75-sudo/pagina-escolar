@@ -6,6 +6,8 @@
 
 <h1>Tarea</h1>
 
+<?= $this->include('errores') ?>
+
 <a href="<?= site_url('tareas') ?>">&laquo; Volver a la lista</a>
 
 <dl>
@@ -27,6 +29,12 @@
 
 <?php if (session('rol') === 'administrador'): ?>
     <a href="<?= site_url("/tareas/edit/{$tarea['id']}") ?>">Editar</a>
+
+    <form method="post" action="<?= site_url("tareas/delete/{$tarea['id']}") ?>"
+          onsubmit="return confirm('¿Seguro que quieres eliminar esta tarea?');">
+        <?= csrf_field() ?>
+        <button type="submit">Eliminar</button>
+    </form>
 <?php endif; ?>
 
 <?= $this->endSection() ?>

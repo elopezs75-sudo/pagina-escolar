@@ -44,13 +44,28 @@ class Tareas extends BaseController
     {
         $model = new \App\Models\TareaModel();
 
-        if ($this->esAdmin()) {
-            $data = $model->findAll();
-        } else {
-            $data = $model->where('usuario_id', session('usuario_id'))->findAll();
+        if (! $this->esAdmin()) {
+            $model->where('usuario_id', session('usuario_id'));
         }
 
-        return view("Tareas/index", ['tareas' => $data]);
+        $buscar = trim((string) $this->request->getGet('buscar'));
+
+        if ($buscar !== '') {
+            $model->groupStart()
+                    ->like('titulo', $buscar)
+                    ->orLike('descripcion', $buscar)
+                  ->groupEnd();
+        }
+
+        $data = $model->orderBy('created_at', 'DESC')->paginate(5);
+
+        $model->pager->only(['buscar']); // mantiene la búsqueda al cambiar de página
+
+        return view("Tareas/index", [
+            'tareas' => $data,
+            'pager'  => $model->pager,
+            'buscar' => $buscar,
+        ]);
     }
 
     public function show($id)
@@ -129,5 +144,16 @@ class Tareas extends BaseController
                          ->with('errors', $model->errors())
                          ->with('warning', 'Error al actualizar la tarea')
                          ->withInput();
+    }
+
+    public function delete($id)
+    {
+        if ($this->buscarTarea($id) === null) {
+            return redirect()->to('/tareas')->with('errors', ['Tarea no encontrada']);
+        }
+
+        (new \App\Models\TareaModel())->delete($id);
+
+        return redirect()->to('/tareas')->with('message', 'Tarea eliminada con éxito');
     }
 }
